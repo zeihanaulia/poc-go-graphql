@@ -1,0 +1,46 @@
+type Address {
+  addressId: Int
+  address: String!
+  address2: String
+  district: String!
+  postalCode: String
+  phone: String
+}
+
+type Staff {
+  staffId: Int!
+  firstName: String!
+  lastName: String
+  email: String
+  username: String
+  password: String
+  addressId: Int!
+  Address: Address!
+}
+
+type Query {
+  staffs: [Staff!]!
+  addresses: [Address!]!
+}
+
+input NewAddress {
+  address: String!
+  address2: String
+  district: String!
+  postalCode: String
+  phone: String
+}
+
+input NewStaff {
+  firstName: String
+  lastName: String
+  email: String!
+  active: Boolean
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  registerStaff(input: NewStaff!): Staff!
+  createAddress(input: NewAddress): Address!
+}
